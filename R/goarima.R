@@ -11,6 +11,6 @@
 arima_all <-function(x){
   fit<-auto.arima(x)
   bt<-Box.test(fit$residuals,lag=5,fitdf=length(fit$model$phi)+length(fit$model$theta))
-  return(list("p.value"=bt$p.value,"ub"=as.vector(fit$resid)+sd(fit$resid)),"lb"==as.vector(fit$resid)-sd(fit$resid)),"resid"=as.vector(fit$resid),"phi"=as.vector(fit$model$phi),"theta"=as.vector(fit$model$theta),"D"=as.vector(fit$model$D)))
+  return(list("p.value"=bt$p.value,"ub"=as.vector(fit$resid+sd(fit$resid)),"lb"=as.vector(fit$resid-sd(fit$resid)),"resid"=as.vector(fit$resid),"phi"=as.vector(fit$model$phi),"theta"=as.vector(fit$model$theta),"D"=as.vector(fit$model$D)))
   
 }
